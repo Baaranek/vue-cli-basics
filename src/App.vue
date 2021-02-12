@@ -1,15 +1,30 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <h1 v-if="!isHide">Title</h1>
+  <Header titleFromProps="hello" @hide="toggleTitle">
+    <h1>A slot form App.vue</h1>
+    <template v-slot:slotslot>
+      <div>
+        <p>Hello It's a slot ffrom App.vue</p>
+      </div>
+    </template>
+  </Header>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Header from './components/Header.vue';
 
 export default {
-  name: "App",
-  components: {
-    HelloWorld
+  name: 'App',
+  components: { Header },
+  data() {
+    return {
+      isHide: false
+    };
+  },
+  methods: {
+    toggleTitle() {
+      this.isHide = !this.isHide;
+    }
   }
 };
 </script>
